@@ -1,6 +1,6 @@
 # IoC-assesment
 
-changed ot to oldTechnologies
+changed all the naming for readability and better understanding of code
 
 capitalized comments
 
