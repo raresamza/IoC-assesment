@@ -85,15 +85,24 @@ namespace IoC_asesment
 
         private void CalculateRegistrationFee()
         {
-
-            RegistrationFee = Exp switch
+            switch (Exp)
             {
-                <= 1 => 500,
-                >= 2 and <= 3 => 250,
-                >= 4 and <= 5 => 100,
-                >= 6 and <= 9 => 50,
-                _ => 0
-            };
+                case <= 1:
+                    RegistrationFee = 500;
+                    break;
+                case >= 2 and <= 3:
+                    RegistrationFee = 250;
+                    break;
+                case >= 4 and <= 5:
+                    RegistrationFee = 100;
+                    break;
+                case >= 6 and <= 9:
+                    RegistrationFee = 50;
+                    break;
+                default:
+                    RegistrationFee = 0;
+                    break;
+            }
         }
 
         public class SpeakerDoesntMeetRequirementsException : Exception
