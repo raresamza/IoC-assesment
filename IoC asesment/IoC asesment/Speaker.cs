@@ -59,8 +59,15 @@ namespace IoC_asesment
             var validEmployers = new List<string>() { "Microsoft", "Google", "Fog Creek Software", "37Signals" };
             var invalidDomains = new List<string>() { "aol.com", "hotmail.com", "prodigy.com", "CompuServe.com" };
 
-            return (Exp > 10 || HasBlog || Certifications.Count >= requiredCertifications || validEmployers.Contains(Employer))
-                && (!invalidDomains.Contains(Email.Split('@').Last()) && !(Browser.Name == WebBrowser.BrowserName.InternetExplorer && Browser.MajorVersion < 9));
+            if (!(Exp > 10 || HasBlog || Certifications.Count() > requiredCertifications || validEmployers.Contains(Employer)))
+            {
+                string emailDomain = Email.Split('@').Last();
+                if (!invalidDomains.Contains(emailDomain) && (!(Browser.Name == WebBrowser.BrowserName.InternetExplorer && Browser.MajorVersion < 9)))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         private void ApproveSessions()
@@ -80,6 +87,10 @@ namespace IoC_asesment
                 {
                     session.Approved = true;
                 }
+            }
+            if (!Sessions.Any(session => session.Approved = true))
+            {
+                throw new NoSessionsApprovedException("No approved session found");
             }
         }
 
@@ -113,6 +124,10 @@ namespace IoC_asesment
         public class SpeakerRegistrationFailedException : Exception
         {
             public SpeakerRegistrationFailedException(string message, Exception innerException) : base(message, innerException) { }
+        }
+        public class NoSessionsApprovedException : Exception
+        {
+            public NoSessionsApprovedException(string message) : base(message) { }
         }
     }
 }
