@@ -115,19 +115,5 @@ namespace IoC_asesment
                     break;
             }
         }
-
-        public class SpeakerDoesntMeetRequirementsException : Exception
-        {
-            public SpeakerDoesntMeetRequirementsException(string message) : base(message) { }
-        }
-
-        public class SpeakerRegistrationFailedException : Exception
-        {
-            public SpeakerRegistrationFailedException(string message, Exception innerException) : base(message, innerException) { }
-        }
-        public class NoSessionsApprovedException : Exception
-        {
-            public NoSessionsApprovedException(string message) : base(message) { }
-        }
     }
 }
