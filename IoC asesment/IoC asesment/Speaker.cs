@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IoC_asesment.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,21 +25,16 @@ namespace IoC_asesment
         public int? Register(IRepository repository)
         {
             ValidateSpeaker();
-
             if (!IsSpeakerQualified())
                 throw new SpeakerDoesntMeetRequirementsException("Speaker doesn't meet the requirements.");
-
             ApproveSessions();
-
             CalculateRegistrationFee();
-
             try
             {
                 return repository.SaveSpeaker(this);
             }
             catch (Exception e)
             {
-                // Log or handle the exception accordingly
                 throw new SpeakerRegistrationFailedException("Failed to register speaker.", e);
             }
         }
