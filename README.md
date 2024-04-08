@@ -23,3 +23,33 @@ encapsulated logic in private methods  promoting better separation of concerns
 improved naming conventions removed commented-out code and made methods more readable
 
 enhanced exception handling for better error reporting and debugging
+
+Code Smells:
+
+rigidity
+
+fragility
+
+immobility
+
+needless complexion
+
+needless repetition
+
+opacity
+
+Programmatic principles violated:
+DRY
+
+KISS
+
+Refactoring Techniques Used:
+
+renmoved flags
+
+extract method
+
+use meaningful names
+
+separation of concerns
+
